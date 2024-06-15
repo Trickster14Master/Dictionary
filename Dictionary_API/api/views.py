@@ -9,27 +9,17 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
    
 class DictionaryAPI(viewsets.ModelViewSet):
-    # показываем что доступны все методы для работы с данными (post, get, put, delete запросы)
     queryset= Dictionary.objects.all()
-    # указываем сериализатор
     serializer_class = DictionarySerializer 
-    # устанавливаем классы для фильтрации 
     filter_backends = (DjangoFilterBackend, SearchFilter)
-    # указываем поле по которому проводить фильтрацию 
     search_fields = ['Word']
 
     def get_paginated_response(self, data):
        return Response(data)
    
 class ExampleAPI(viewsets.ModelViewSet):
-    # показываем что доступны все методы для работы с данными (post, get, put, delete запросы)
     queryset= Dictionary.objects.all()
-    # указываем сериализатор
     serializer_class = ExampleSerializer 
-    # устанавливаем классы для фильтрации 
-    filter_backends = (DjangoFilterBackend, SearchFilter)
-    # указываем поле по которому проводить фильтрацию 
-    search_fields = ['Example']
 
     def get_paginated_response(self, data):
        return Response(data)
